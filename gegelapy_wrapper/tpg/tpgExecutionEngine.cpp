@@ -1,5 +1,7 @@
 #include <boost/python.hpp>
-#include "tpg/tpgExecutionEngine.h" // Assuming this is the header file containing the TPG namespace
+#include <boost/python/object.hpp>
+#include <boost/python/make_function.hpp>
+#include "tpg/tpgExecutionEngine.h"
 
 namespace bp = boost::python;
 using namespace TPG;
@@ -32,14 +34,15 @@ public:
         return TPGExecutionEngine::evaluateEdge(edge);
     }
 
-    const TPGEdge& evaluateTeam(const TPGTeam& team) {
+    const TPG::TPGEdge& evaluateTeamWrapper(const TPGTeam& team) {
         if (bp::override func_evaluateTeam = this->get_override("evaluateTeam")) {
-            return func_evaluateTeam(team);
+            bp::object result = func_evaluateTeam(team);
+            return bp::extract<const TPG::TPGEdge&>(result);
         }
         return TPGExecutionEngine::evaluateTeam(team);
     }
 
-    const TPGEdge& default_evaluateTeam(const TPGTeam& team) {
+    const TPG::TPGEdge& default_evaluateTeamWrapper(const TPGTeam& team) {
         return TPGExecutionEngine::evaluateTeam(team);
     }
 
@@ -57,9 +60,11 @@ public:
 
 BOOST_PYTHON_MODULE(tpgExecutionEngine) {
     bp::class_<TPGExecutionEngineWrapper, boost::noncopyable>("TPGExecutionEngine", bp::init<const Environment&, Archive*>())
-        .def("setArchive", &TPGExecutionEngine::setArchive, &TPGExecutionEngineWrapper::default_setArchive)
-        .def("evaluateEdge", &TPGExecutionEngine::evaluateEdge, &TPGExecutionEngineWrapper::default_evaluateEdge)
-        .def("evaluateTeam", &TPGExecutionEngine::evaluateTeam, &TPGExecutionEngineWrapper::default_evaluateTeam)
-        .def("executeFromRoot", &TPGExecutionEngine::executeFromRoot, &TPGExecutionEngineWrapper::default_executeFromRoot)
+        .def("setArchive", &TPGExecutionEngineWrapper::setArchive, &TPGExecutionEngineWrapper::default_setArchive)
+        .def("evaluateEdge", &TPGExecutionEngineWrapper::evaluateEdge, &TPGExecutionEngineWrapper::default_evaluateEdge)
+        .def("evaluateTeam", &TPGExecutionEngineWrapper::evaluateTeamWrapper,
+            &TPGExecutionEngineWrapper::default_evaluateTeamWrapper,
+            bp::return_value_policy<bp::reference_existing_object>())
+        .def("executeFromRoot", &TPGExecutionEngineWrapper::executeFromRoot, &TPGExecutionEngineWrapper::default_executeFromRoot)
         ;
 }
