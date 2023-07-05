@@ -21,7 +21,7 @@ namespace Instructions
     }
 
     // Define the Boost.Python module and initialize the bindings
-    BOOST_PYTHON_MODULE(lambdaInstructionWrap)
+    BOOST_PYTHON_MODULE(lambdaInstruction)
     {
         LambdaInstructionWrapper<double>();
         LambdaInstructionWrapper<double, double>();

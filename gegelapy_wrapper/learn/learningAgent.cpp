@@ -27,7 +27,7 @@ namespace Learn
     };
 
     // Expose LearningAgentWrapper class using Boost Python
-    BOOST_PYTHON_MODULE(LearningAgentWrap)
+    BOOST_PYTHON_MODULE(LearningAgent)
     {
         boost::python::class_<LearningAgentWrapper>("LearningAgentWrapper", boost::python::init<Learn::LearningEnvironment&, const Instructions::Set&, const Learn::LearningParameters&, const TPG::TPGFactory&>())
             .def("expose", &LearningAgentWrapper::expose);

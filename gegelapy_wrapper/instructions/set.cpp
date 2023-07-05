@@ -37,7 +37,7 @@ namespace Instructions {
         Set set;
     };
 
-    BOOST_PYTHON_MODULE(setWrapper) {
+    BOOST_PYTHON_MODULE(set) {
         boost::python::class_<SetWrapper>("Set")
             .def(boost::python::init<>())
             .def("add", &SetWrapper::add)
