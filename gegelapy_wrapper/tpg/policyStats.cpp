@@ -20,7 +20,7 @@ BOOST_PYTHON_MODULE(policyStats)
 
     // Expose the PolicyStats::nbUsePerProgram map
     bp::class_<std::map<const Program::Program*, size_t>>("ProgramUseMap")
-        .def("__getitem__", [](const std::map<const Program::Program*, size_t>& map, const Program::Program* key) {
+        .def("__getitem__", +[](const std::map<const Program::Program*, size_t>& map, const Program::Program* key) -> size_t {
             auto iter = map.find(key);
             if (iter != map.end()) {
                 return iter->second;
@@ -28,12 +28,24 @@ BOOST_PYTHON_MODULE(policyStats)
             else {
                 PyErr_SetString(PyExc_KeyError, "Key not found in map");
                 bp::throw_error_already_set();
+                return 0;  // Return a default value here
             }
-        });
+        }, bp::args("self", "key"))
+        .def("__getitem__", +[](const std::map<const Program::Program*, size_t>& map, const Program::Program* key) -> size_t {
+            auto iter = map.find(key);
+            if (iter != map.end()) {
+                return iter->second;
+            }
+            else {
+                PyErr_SetString(PyExc_KeyError, "Key not found in map");
+                bp::throw_error_already_set();
+                return 0;  // Return a default value here
+            }
+        }, bp::args("self", "key"));
 
     // Expose the PolicyStats::nbUsePerTPGTeam map
     bp::class_<std::map<const TPGTeam*, size_t>>("TPGTeamUseMap")
-        .def("__getitem__", [](const std::map<const TPGTeam*, size_t>& map, const TPGTeam* key) {
+        .def("__getitem__", +[](const std::map<const TPGTeam*, size_t>& map, const TPGTeam* key) -> size_t {
             auto iter = map.find(key);
             if (iter != map.end()) {
                 return iter->second;
@@ -41,12 +53,24 @@ BOOST_PYTHON_MODULE(policyStats)
             else {
                 PyErr_SetString(PyExc_KeyError, "Key not found in map");
                 bp::throw_error_already_set();
+                return 0;  // Return a default value here
             }
-        });
+        }, bp::args("self", "key"))
+        .def("__getitem__", +[](const std::map<const TPGTeam*, size_t>& map, const TPGTeam* key) -> size_t {
+            auto iter = map.find(key);
+            if (iter != map.end()) {
+                return iter->second;
+            }
+            else {
+                PyErr_SetString(PyExc_KeyError, "Key not found in map");
+                bp::throw_error_already_set();
+                return 0;  // Return a default value here
+            }
+        }, bp::args("self", "key"));
 
     // Expose the PolicyStats::nbUsePerTPGAction map
     bp::class_<std::map<const TPGAction*, size_t>>("TPGActionUseMap")
-        .def("__getitem__", [](const std::map<const TPGAction*, size_t>& map, const TPGAction* key) {
+        .def("__getitem__", +[](const std::map<const TPGAction*, size_t>& map, const TPGAction* key) -> size_t {
             auto iter = map.find(key);
             if (iter != map.end()) {
                 return iter->second;
@@ -54,12 +78,24 @@ BOOST_PYTHON_MODULE(policyStats)
             else {
                 PyErr_SetString(PyExc_KeyError, "Key not found in map");
                 bp::throw_error_already_set();
+                return 0;  // Return a default value here
             }
-        });
+        }, bp::args("self", "key"))
+        .def("__getitem__", +[](const std::map<const TPGAction*, size_t>& map, const TPGAction* key) -> size_t {
+            auto iter = map.find(key);
+            if (iter != map.end()) {
+                return iter->second;
+            }
+            else {
+                PyErr_SetString(PyExc_KeyError, "Key not found in map");
+                bp::throw_error_already_set();
+                return 0;  // Return a default value here
+            }
+        }, bp::args("self", "key"));
 
     // Expose the PolicyStats::nbUsagePerInstruction map
     bp::class_<std::map<size_t, size_t>>("InstructionUsageMap")
-        .def("__getitem__", [](const std::map<size_t, size_t>& map, size_t key) {
+        .def("__getitem__", +[](const std::map<size_t, size_t>& map, size_t key) -> size_t {
             auto iter = map.find(key);
             if (iter != map.end()) {
                 return iter->second;
@@ -67,12 +103,24 @@ BOOST_PYTHON_MODULE(policyStats)
             else {
                 PyErr_SetString(PyExc_KeyError, "Key not found in map");
                 bp::throw_error_already_set();
+                return 0;  // Return a default value here
             }
-        });
+        }, bp::args("self", "key"))
+        .def("__getitem__", +[](const std::map<size_t, size_t>& map, size_t key) -> size_t {
+            auto iter = map.find(key);
+            if (iter != map.end()) {
+                return iter->second;
+            }
+            else {
+                PyErr_SetString(PyExc_KeyError, "Key not found in map");
+                bp::throw_error_already_set();
+                return 0;  // Return a default value here
+            }
+        }, bp::args("self", "key"));
 
     // Expose the PolicyStats::nbUsagePerDataLocation map
     bp::class_<std::map<std::pair<size_t, size_t>, size_t>>("DataLocationUsageMap")
-        .def("__getitem__", [](const std::map<std::pair<size_t, size_t>, size_t>& map, std::pair<size_t, size_t> key) {
+        .def("__getitem__", +[](const std::map<std::pair<size_t, size_t>, size_t>& map, std::pair<size_t, size_t> key) -> size_t {
             auto iter = map.find(key);
             if (iter != map.end()) {
                 return iter->second;
@@ -80,6 +128,18 @@ BOOST_PYTHON_MODULE(policyStats)
             else {
                 PyErr_SetString(PyExc_KeyError, "Key not found in map");
                 bp::throw_error_already_set();
+                return 0;  // Return a default value here
             }
-        });
+        }, bp::args("self", "key"))
+        .def("__getitem__", +[](const std::map<std::pair<size_t, size_t>, size_t>& map, std::pair<size_t, size_t> key) -> size_t {
+            auto iter = map.find(key);
+            if (iter != map.end()) {
+                return iter->second;
+            }
+            else {
+                PyErr_SetString(PyExc_KeyError, "Key not found in map");
+                bp::throw_error_already_set();
+                return 0;  // Return a default value here
+            }
+        }, bp::args("self", "key"));
 }
