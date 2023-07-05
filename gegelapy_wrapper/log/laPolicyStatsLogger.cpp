@@ -1,5 +1,6 @@
 #include <boost/python.hpp>
-#include "log/laPolicyStatsLogger.h"
+#include <learn/learningAgent.h>
+#include <log/laPolicyStatsLogger.h>
 
 namespace bp = boost::python;
 

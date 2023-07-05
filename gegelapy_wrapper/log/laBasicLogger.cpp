@@ -1,5 +1,6 @@
 #include <boost/python.hpp>
-#include "log/laBasicLogger.h"
+#include <learn/learningAgent.h>
+#include <log/laBasicLogger.h>
 
 namespace bp = boost::python;
 
