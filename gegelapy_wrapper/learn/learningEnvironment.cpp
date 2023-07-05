@@ -1,9 +1,13 @@
 #include <boost/python.hpp>
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
-#include "learn/learningEnvironment.h" 
+#include <learn/learningEnvironment.h>
+#include <boost/bind/bind.hpp>
+
+#include <iterator>
 
 namespace bp = boost::python;
 using namespace Learn;
+using namespace boost::placeholders;
 
 // Wrapper for the LearningMode enum
 void exposeLearningModeEnum() {
@@ -26,7 +30,7 @@ public:
         return LearningEnvironment::clone();
     }
 
-    bool default_clone() const {
+    LearningEnvironment* default_clone() const {
         return LearningEnvironment::clone();
     }
 
@@ -97,6 +101,10 @@ public:
     bool default_isTerminal() const {
         return LearningEnvironment::isTerminal();
     }
+
+    private:
+    LearningEnvironmentWrapper(const LearningEnvironmentWrapper&);
+    LearningEnvironmentWrapper& operator=(const LearningEnvironmentWrapper&);
 };
 
 BOOST_PYTHON_MODULE(LearningEnvironment) {
@@ -105,7 +113,7 @@ BOOST_PYTHON_MODULE(LearningEnvironment) {
 
     // Expose the LearningEnvironment class
     bp::class_<LearningEnvironmentWrapper, boost::noncopyable>("LearningEnvironment", bp::init<uint64_t>())
-        .def("clone", &LearningEnvironment::clone, &LearningEnvironmentWrapper::default_clone)
+        .def("clone", &LearningEnvironment::clone, &LearningEnvironmentWrapper::default_clone, bp::return_value_policy<bp::reference_existing_object>())
         .def("isCopyable", &LearningEnvironment::isCopyable, &LearningEnvironmentWrapper::default_isCopyable)
         .def("doAction", &LearningEnvironment::doAction, &LearningEnvironmentWrapper::default_doAction)
         .def("reset", &LearningEnvironment::reset, &LearningEnvironmentWrapper::default_reset,

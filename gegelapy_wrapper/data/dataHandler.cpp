@@ -4,10 +4,14 @@
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
 #include <boost/bind/bind.hpp>
 
+#include <iterator>
 
 #include <data/dataHandler.h>
 #include <data/untypedSharedPtr.h>
+
 namespace bp = boost::python;
+
+using namespace boost::placeholders;
 
 // Custom converter for UntypedSharedPtr
 
