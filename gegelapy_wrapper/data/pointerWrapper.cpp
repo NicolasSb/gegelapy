@@ -11,7 +11,7 @@ namespace Data {
     class PointerWrapper;
 
 } // namespace Data
-BOOST_PYTHON_MODULE(rng)
+BOOST_PYTHON_MODULE(pointerWrapper)
 {
     // Register the PointerWrapper template class
     bp::class_<Data::PointerWrapper<int>>("PointerWrapperInt", bp::init<int*>())
