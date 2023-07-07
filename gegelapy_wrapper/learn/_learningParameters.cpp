@@ -23,7 +23,7 @@ void exposeLearningParameters()
         .def_readwrite("doValidation", &Learn::LearningParameters::doValidation);
 }
 
-BOOST_PYTHON_MODULE(learningParameters)
+BOOST_PYTHON_MODULE(_l)
 {
     // Expose the LearningParameters structure
     exposeLearningParameters();

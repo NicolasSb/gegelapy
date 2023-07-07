@@ -5,7 +5,7 @@ namespace bp = boost::python;
 
 using namespace TPG;
 
-BOOST_PYTHON_MODULE(policyStats)
+BOOST_PYTHON_MODULE(_policyStats)
 {
     // Expose the PolicyStats class
     bp::class_<PolicyStats>("PolicyStats")

@@ -7,7 +7,7 @@ namespace bp = boost::python;
 namespace Log
 {
 
-    BOOST_PYTHON_MODULE(laPolicyStatsLogger)
+    BOOST_PYTHON_MODULE(_laPolicyStatsLogger)
     {
         // Expose the LAPolicyStatsLogger class to Python
         bp::class_<LAPolicyStatsLogger>("LAPolicyStatsLogger", bp::init<Learn::LearningAgent&, std::ostream&>())

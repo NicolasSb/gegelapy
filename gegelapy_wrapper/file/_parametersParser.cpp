@@ -5,7 +5,7 @@ namespace bp = boost::python;
 
 namespace File::ParametersParser
 {
-    BOOST_PYTHON_MODULE(parametersParser)
+    BOOST_PYTHON_MODULE(_parametersParser)
     {
         // Expose the loadParametersFromJson function
         bp::def("loadParametersFromJson", loadParametersFromJson);

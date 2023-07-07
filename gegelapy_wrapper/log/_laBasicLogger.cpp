@@ -5,9 +5,9 @@
 namespace bp = boost::python;
 
 namespace Log
-    {
+{
 
-    BOOST_PYTHON_MODULE(laBasicLogger)
+    BOOST_PYTHON_MODULE(_laBasicLogger)
     {
         // Expose the LABasicLogger class to Python
         bp::class_<LABasicLogger, bp::bases<LALogger>>("LABasicLogger", bp::init<Learn::LearningAgent&, std::ostream&>())

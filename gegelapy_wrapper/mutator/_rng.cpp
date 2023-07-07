@@ -8,7 +8,7 @@ namespace bp = boost::python;
 
 namespace Mutator 
 {
-    BOOST_PYTHON_MODULE(rng)
+    BOOST_PYTHON_MODULE(_rng)
     {
         bp::class_<Mutator::RNG, boost::shared_ptr<Mutator::RNG>>("RNG", bp::init<uint64_t>())
             .def("setSeed", &Mutator::RNG::setSeed)

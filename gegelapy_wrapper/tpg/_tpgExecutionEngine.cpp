@@ -58,7 +58,7 @@ public:
     }
 };
 
-BOOST_PYTHON_MODULE(tpgExecutionEngine) {
+BOOST_PYTHON_MODULE(_tpgExecutionEngine) {
     bp::class_<TPGExecutionEngineWrapper, boost::noncopyable>("TPGExecutionEngine", bp::init<const Environment&, Archive*>())
         .def("setArchive", &TPGExecutionEngineWrapper::setArchive, &TPGExecutionEngineWrapper::default_setArchive)
         .def("evaluateEdge", &TPGExecutionEngineWrapper::evaluateEdge, &TPGExecutionEngineWrapper::default_evaluateEdge)

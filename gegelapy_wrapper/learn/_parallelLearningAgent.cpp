@@ -82,7 +82,7 @@ namespace {
     }
 }
 
-BOOST_PYTHON_MODULE(parallelLearningAgent) {
+BOOST_PYTHON_MODULE(_parallelLearningAgent) {
     using namespace boost::python;
     using namespace Learn;
 

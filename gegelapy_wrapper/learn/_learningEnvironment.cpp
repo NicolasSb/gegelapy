@@ -60,54 +60,37 @@ public:
     void reset(size_t seed = 0, LearningMode mode = LearningMode::TRAINING) {
         if (bp::override func_reset = this->get_override("reset")) {
             func_reset(seed, mode);
-        } else {
-            LearningEnvironment::reset(seed, mode);
         }
-    }
-
-    void default_reset(size_t seed = 0, LearningMode mode = LearningMode::TRAINING) {
-        LearningEnvironment::reset(seed, mode);
     }
 
     std::vector<std::reference_wrapper<const Data::DataHandler>> getDataSources() {
         if (bp::override func_getDataSources = this->get_override("getDataSources")) {
             return func_getDataSources();
         }
-        return LearningEnvironment::getDataSources();
-    }
-
-    std::vector<std::reference_wrapper<const Data::DataHandler>> default_getDataSources() {
-        return LearningEnvironment::getDataSources();
+        return std::vector<std::reference_wrapper<const Data::DataHandler>>();
     }
 
     double getScore() const {
         if (bp::override func_getScore = this->get_override("getScore")) {
             return func_getScore();
         }
-        return LearningEnvironment::getScore();
-    }
-
-    double default_getScore() const {
-        return LearningEnvironment::getScore();
+        return 0;
     }
 
     bool isTerminal() const {
         if (bp::override func_isTerminal = this->get_override("isTerminal")) {
             return func_isTerminal();
         }
-        return LearningEnvironment::isTerminal();
+        return false;
     }
 
-    bool default_isTerminal() const {
-        return LearningEnvironment::isTerminal();
-    }
 
     private:
     LearningEnvironmentWrapper(const LearningEnvironmentWrapper&);
     LearningEnvironmentWrapper& operator=(const LearningEnvironmentWrapper&);
 };
 
-BOOST_PYTHON_MODULE(LearningEnvironment) {
+BOOST_PYTHON_MODULE(_learningEnvironment) {
     // Expose the LearningMode enum
     exposeLearningModeEnum();
 
@@ -116,10 +99,10 @@ BOOST_PYTHON_MODULE(LearningEnvironment) {
         .def("clone", &LearningEnvironment::clone, &LearningEnvironmentWrapper::default_clone, bp::return_value_policy<bp::reference_existing_object>())
         .def("isCopyable", &LearningEnvironment::isCopyable, &LearningEnvironmentWrapper::default_isCopyable)
         .def("doAction", &LearningEnvironment::doAction, &LearningEnvironmentWrapper::default_doAction)
-        .def("reset", &LearningEnvironment::reset, &LearningEnvironmentWrapper::default_reset,
+        .def("reset", &LearningEnvironment::reset, &LearningEnvironmentWrapper::reset,
              (bp::arg("seed") = 0, bp::arg("mode") = LearningMode::TRAINING))
-        .def("getDataSources", &LearningEnvironment::getDataSources, &LearningEnvironmentWrapper::default_getDataSources)
-        .def("getScore", &LearningEnvironment::getScore, &LearningEnvironmentWrapper::default_getScore)
-        .def("isTerminal", &LearningEnvironment::isTerminal, &LearningEnvironmentWrapper::default_isTerminal)
+        .def("getDataSources", &LearningEnvironment::getDataSources, &LearningEnvironmentWrapper::getDataSources)
+        .def("getScore", &LearningEnvironment::getScore, &LearningEnvironmentWrapper::getScore)
+        .def("isTerminal", &LearningEnvironment::isTerminal, &LearningEnvironmentWrapper::isTerminal)
         ;
 }

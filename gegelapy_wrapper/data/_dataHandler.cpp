@@ -37,7 +37,7 @@ void register_converter()
     bp::to_python_converter<Data::UntypedSharedPtr, UntypedSharedPtrToPythonConverter>();
 }
 
-BOOST_PYTHON_MODULE(DataHandler)
+BOOST_PYTHON_MODULE(_dataHandler)
 {
     register_converter();
 

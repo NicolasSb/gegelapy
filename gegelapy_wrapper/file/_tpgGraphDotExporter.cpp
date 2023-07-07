@@ -6,7 +6,7 @@ namespace bp = boost::python;
 namespace File
 {
 
-    BOOST_PYTHON_MODULE(tpgGraphDotExporter)
+    BOOST_PYTHON_MODULE(_tpgGraphDotExporter)
     {
         // Expose the TPGGraphDotExporter class to Python
         bp::class_<TPGGraphDotExporter, boost::noncopyable>("TPGGraphDotExporter", bp::init<const char*, const TPG::TPGGraph&>())

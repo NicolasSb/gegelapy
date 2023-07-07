@@ -9,9 +9,9 @@ namespace Data {
     // Declare the PointerWrapper template class
     template <class T>
     class PointerWrapper;
-
 } // namespace Data
-BOOST_PYTHON_MODULE(pointerWrapper)
+
+BOOST_PYTHON_MODULE(_pointerWrapper)
 {
     // Register the PointerWrapper template class
     bp::class_<Data::PointerWrapper<int>>("PointerWrapperInt", bp::init<int*>())
